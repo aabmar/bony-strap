@@ -1,0 +1,24 @@
+{
+  "name": "bony-strap",
+  "version": "0.1.0",
+  "description": "Bootstrap implemented as Bony Components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aabmar/bony-strap.git"
+  },
+  "keywords": [
+    "bony",
+    "bootstrap",
+    "backbone"
+  ],
+  "author": "Marius Aabel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aabmar/bony-strap/issues"
+  },
+  "homepage": "https://github.com/aabmar/bony-strap#readme"
+}
