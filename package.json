@@ -4,7 +4,9 @@
   "description": "Bootstrap implemented as Bony Components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify -g envify -vt node-lessify -t hbsfy demo/lib/index.js -o demo/_bundle.js -d",
+    "build": "browserify -g envify -vt node-lessify -t hbsfy demo/lib/index.js -o demo/_bundle.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,16 @@
   "bugs": {
     "url": "https://github.com/aabmar/bony-strap/issues"
   },
-  "homepage": "https://github.com/aabmar/bony-strap#readme"
+  "homepage": "https://github.com/aabmar/bony-strap#readme",
+  "dependencies": {
+    "bony": "^1.0.0",
+    "bootstrap": "^3.3.7",
+    "envify": "^3.4.1",
+    "handlebars": "^4.0.5",
+    "hbsfy": "^2.7.0",
+    "http-server": "^0.9.0",
+    "lessify": "^1.0.1",
+    "node-lessify": "^0.1.4",
+    "uglifyify": "^3.0.2"
+  }
 }
