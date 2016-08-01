@@ -3,44 +3,63 @@
 
 // Import dependencies
 var $ = require("jquery");
-var Backbone = require("backbone");
 var bony = require("bony");
-
-var Collection = Backbone.Collection;
 var Component = bony.Component;
-var ListGroup = require("./ListGroup")
-
+var Menu = require("./Menu");
 
 module.exports = Component.extend({
 
     initialize: function(options) {
         Component.prototype.initialize.call(this, options);
 
+        if(!this.options.menuCollection) throw Error("App need parameter menuCollection");
         this.parseTemplates();
 
-        this.collection = new Collection(INITIAL_DATA);
-
-        var page = new Component({
-            tagName: "article",
-            className: "page bony_page"
-        });
-
+        // TOP HEADER
         var header = new Component({
             tagName: "header",
             template: require("./header.hbs")
         });
+        this.addComponent(header);
 
-        page.addComponent(header);
+        // DOUBLE WRAPPER
+        var c = new Component({
+            tagName: "div",
+            className: "container-fluid"
+        });
+        this.container = new Component({
+            tagName: "div",
+            className: "row"
+        });
+        c.addComponent(this.container)
+        this.addComponent(c);
 
-        page.addComponent(new ListGroup({
-            collection: this.collection,
-        }));
+        // MENU
+        var menu = new Menu({
+            collection: this.options.menuCollection
+        });
 
-        this.addComponent(page);
+        this.container.addComponent(menu);
+
+        // PAGE -- here is normal content placed
+        this.page = new Component({
+            tagName: "div",
+            className: "col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+        });
+        this.container.addComponent(this.page);
 
         this.dirty();
 
     },
+
+    addToPage: function(component){
+        this.page.addComponent(component);
+    },
+
+    replacePage: function(component){
+        this.page.replaceComponent(component);
+    },
+
 
     // Read templates from HTML code and compile them to JavaScript.
 
@@ -60,20 +79,3 @@ module.exports = Component.extend({
 
 });
 
-
-var INITIAL_DATA = [{
-    name: "Marius",
-    age: 39
-}, {
-    name: "Matias",
-    age: 24
-}, {
-    name: "Thomas",
-    age: 25
-}, {
-    name: "Jesper",
-    age: 31
-}, {
-    name: "Halfdan",
-    age: 26
-}];

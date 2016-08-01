@@ -1,0 +1,9 @@
+
+{{#list}}
+  <ul class="nav nav-sidebar">
+    <li {{#selected}}class="active"{{/selected}}><a href="#{{id}}">{{name}} <span class="sr-only">(current)</span></a></li>
+    {{#sub}}
+    <li><a {{#selected}}class="active"{{/selected}} href="#{{id}}">{{name}}</a></li>
+    {{/sub}}
+  </ul>
+{{/list}}
